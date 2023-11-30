@@ -4,19 +4,19 @@ import time
 URL = "https://общее-дело.рф/"
 
 
-def test_logo(browser):
+def test_logo_is_visible(browser):
     page = MainPage(browser)
     page.open(URL)
     page.logo_is_visible()
 
 
-def test_help_payment_button(browser):
+def test_help_payment_button_is_visible(browser):
     page = MainPage(browser)
     page.open(URL)
     page.help_payment_button_is_visible()
 
 
-def test_content(browser):
+def test_content_is_visible(browser):
     page = MainPage(browser)
     page.open(URL)
     page.content_is_visible()
