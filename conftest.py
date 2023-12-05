@@ -1,5 +1,4 @@
 import pytest
-from selenium_stealth import stealth
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
