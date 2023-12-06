@@ -39,7 +39,7 @@ class BasePage:
     def current_windows(self):
         return self.browser.current_window_handle
 
-    def swith_windows(self):
+    def swith_windows(self) -> None:
         for window_handle in self.browser.window_handles:
             if window_handle != self.current_windows():
                 self.browser.switch_to.window(window_handle)
