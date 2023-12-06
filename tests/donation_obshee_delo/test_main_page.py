@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from pages.donation_obshee_delo.main_page import MainPage
 from locators.donation_obshee_delo_locators import MainPageLocators
@@ -19,13 +21,24 @@ class TestMainPage:
 
 class TestPayment(FakeData):
     def test_min_support_amount(self, browser):
-        """Тест проверяет что минемальная семма перевода не может быть меньше 10 рублей"""
+        """Тест проверяет что минемальная сумма перевода не может быть меньше 10 рублей"""
         page = MainPage(browser)
         page.open(URL)
         page.menu_support_button_click()
         page.send_sum(amount=9)
         page.click_pay_button()
         assert page.get_text(locator=MainPageLocators.SUM_ERROR) == "Сумма должна быть больше 10 Руб."
+
+    def test_sum_field_empty(self, browser):
+        """Тест проверяет, что невозможно выполнить платеж с пустым полем сумма"""
+        page = MainPage(browser)
+        page.open(URL)
+        page.menu_support_button_click()
+        page.send_name_field(self.name())
+        page.send_phone_field(self.phone())
+        page.send_email_field(self.email())
+        page.click_pay_button()
+        assert page.get_text(MainPageLocators.SUM_ERROR) == "Введите корректную сумму"
 
     def test_send_support_default(self, browser):
         """Тест проверяет возможность выполнить перевод по банковской карте"""
