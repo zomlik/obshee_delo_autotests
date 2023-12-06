@@ -3,9 +3,19 @@ from faker import Faker
 
 
 class FakeData:
-    fake = Faker("ru_RU")
+    @staticmethod
+    def amount(min_value: int, max_value: int):
+        return randint(min_value, max_value)
 
-    sum = randint(10, 99999)
-    name = fake.name()
-    phone = fake.phone_number()
-    email = fake.email()
+    @property
+    def name(self):
+        return Faker("ru_RU").name
+
+    @property
+    def phone(self):
+        return Faker("ru_RU").phone_number
+
+    @property
+    def email(self):
+        return Faker("ru_RU").email
+
