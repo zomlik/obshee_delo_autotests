@@ -26,6 +26,16 @@ class TestMainPage:
         page.is_clicable(buttons).click()
         assert page.is_visible(MainPageLocators.PAY_BUTTON)
 
+    def test_payment_form_placeholder(self, browser):
+        """Тест проверяет placeholder у формы оплаты"""
+        page = MainPage(browser)
+        page.open(URL)
+        page.menu_support_button_click()
+        assert page.get_attribute(MainPageLocators.SUM_FIELD, "placeholder") == "Сумма"
+        assert page.get_attribute(MainPageLocators.NAME_FIELD, "placeholder") == "ФИО"
+        assert page.get_attribute(MainPageLocators.PHONE_FIELD, "placeholder") == "Телефон"
+        assert page.get_attribute(MainPageLocators.EMAIL_FIELD, "placeholder") == "E-mail"
+
 
 class TestPayment(FakeData):
     def test_min_support_amount(self, browser):
