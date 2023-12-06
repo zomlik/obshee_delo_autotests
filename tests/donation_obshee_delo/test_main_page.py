@@ -18,6 +18,14 @@ class TestMainPage:
         page.is_clicable(locator_button).click()
         assert page.current_url() == expected_link
 
+    @pytest.mark.parametrize("buttons", MainPageLocators.list_button_support)
+    def test_support_buttons(self, browser, buttons):
+        """Тест проверяет что все кнопки ПОДДЕРЖАТЬ работают"""
+        page = MainPage(browser)
+        page.open(URL)
+        page.is_clicable(buttons).click()
+        assert page.is_visible(MainPageLocators.PAY_BUTTON)
+
 
 class TestPayment(FakeData):
     def test_min_support_amount(self, browser):
