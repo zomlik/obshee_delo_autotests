@@ -21,8 +21,8 @@ class BasePage:
     def get_text(self, locator) -> str:
         return self.is_visible(locator).text
 
-    def find(self, locator: tuple):
-        return self.browser.find_element(*locator)
+    def get_attribute(self, locator: tuple, attribute: str):
+        return self.is_visible(locator).get_attribute(attribute)
 
     def is_visible(self, locator: tuple, timeout: int = TIMEOUT) -> WebElement:
         return wait(self.browser, timeout).until(EC.visibility_of_element_located(locator))
