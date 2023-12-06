@@ -7,6 +7,9 @@ class MainPage(BasePage, FakeData):
     def __init__(self, browser):
         super().__init__(browser)
 
+    def click_logo(self):
+        return self.is_visible(MainPageLocators.LOGO).click()
+
     def menu_support_button_click(self):
         return self.is_clicable(MainPageLocators.MENU_SUPPORT_BUTTON).click()
 
