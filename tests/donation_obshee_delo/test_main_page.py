@@ -1,5 +1,3 @@
-import time
-
 import pytest
 from pages.donation_obshee_delo.main_page import MainPage
 from locators.donation_obshee_delo_locators import MainPageLocators
