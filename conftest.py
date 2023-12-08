@@ -14,5 +14,6 @@ def options():
 def browser(options):
     browser = webdriver.Chrome(options=options)
     browser.implicitly_wait(10)
+    browser.maximize_window()
     yield browser
     browser.quit()
