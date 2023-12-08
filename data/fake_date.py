@@ -2,7 +2,7 @@ from random import randint
 from faker import Faker
 
 
-class FakeData:
+class FakeDate:
     @staticmethod
     def amount(min_value: int, max_value: int):
         return randint(min_value, max_value)

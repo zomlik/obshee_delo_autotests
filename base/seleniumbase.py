@@ -24,6 +24,10 @@ class BasePage:
     def get_attribute(self, locator: tuple, attribute: str):
         return self.is_visible(locator).get_attribute(attribute)
 
+    def clear_and_send(self, el: WebElement, val) -> None:
+        el.clear()
+        el.send_keys(val)
+
     def is_visible(self, locator: tuple, timeout: int = TIMEOUT) -> WebElement:
         return wait(self.browser, timeout).until(EC.visibility_of_element_located(locator))
 
@@ -32,6 +36,10 @@ class BasePage:
 
     def all_elems_is_visible(self, locator: tuple, timeout: int = TIMEOUT) -> list[WebElement]:
         return wait(self.browser, timeout).until(EC.visibility_of_all_elements_located(locator))
+
+    def swith_iframe(self, locator: tuple) -> None:
+        iframe = self.browser.find_element(*locator)
+        self.browser.switch_to.frame(iframe)
 
     def leave_iframe(self):
         return self.browser.switch_to.default_content()
