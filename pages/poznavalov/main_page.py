@@ -10,6 +10,9 @@ class MainPage(BasePage):
     def click_support_button(self):
         return self.is_clicable(MainPageLocators.HEADER_SUPPORT_BUTTON).click()
 
+    def click_once_time_button(self):
+        return self.is_clicable(MainPageLocators.ONE_SUPPORT).click()
+
     def sum_field(self, amount: int):
         return self.clear_and_send(el=self.is_visible(MainPageLocators.SUM_FIELD), val=amount)
 
