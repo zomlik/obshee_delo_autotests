@@ -25,7 +25,7 @@ class TestMainPage:
     def test_payment_form_placeholder(self, browser):
         page = MainPage(browser)
         page.open(URL)
-        page.menu_support_button_click()
+        page.click_menu_support_button()
         assert page.get_attribute(MainPageLocators.SUM_FIELD, "placeholder") == "Сумма"
         assert page.get_attribute(MainPageLocators.NAME_FIELD, "placeholder") == "ФИО"
         assert page.get_attribute(MainPageLocators.PHONE_FIELD, "placeholder") == "Телефон"
@@ -36,7 +36,7 @@ class TestPayment(FakeData):
     def test_min_support_amount(self, browser):
         page = MainPage(browser)
         page.open(URL)
-        page.menu_support_button_click()
+        page.click_menu_support_button()
         page.send_sum(amount=9)
         page.click_pay_button()
         assert page.get_text(locator=MainPageLocators.SUM_ERROR) == "Сумма должна быть больше 10 Руб."
@@ -44,7 +44,7 @@ class TestPayment(FakeData):
     def test_sum_field_empty(self, browser):
         page = MainPage(browser)
         page.open(URL)
-        page.menu_support_button_click()
+        page.click_menu_support_button()
         page.send_name_field(self.name())
         page.send_phone_field(self.phone())
         page.send_email_field(self.email())
@@ -54,7 +54,7 @@ class TestPayment(FakeData):
     def test_send_support_default(self, browser):
         page = MainPage(browser)
         page.open(URL)
-        page.menu_support_button_click()
+        page.click_menu_support_button()
         page.send_sum(self.amount(min_value=10, max_value=99999))
         page.send_name_field(self.name())
         page.send_phone_field(self.phone())
