@@ -12,6 +12,12 @@ class PaymentPage(BasePage):
     def currency_byn(self):
         return self.is_visible(PaymentPageLocators.CURRENCY_BYN).click()
 
+    def select_recurring_payment(self):
+        return self.is_clicable(PaymentPageLocators.RECURRING_PAYMENT).click()
+
+    def click_sum_500(self):
+        return self.is_clicable(PaymentPageLocators.SUM_500).click()
+
     def send_sum_field(self, amount: int):
         return self.clear_and_send(el=self.is_visible(PaymentPageLocators.SUM_FIELD), val=amount)
 

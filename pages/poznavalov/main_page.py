@@ -16,13 +16,13 @@ class MainPage(BasePage):
     def sum_field(self, amount: int):
         return self.clear_and_send(el=self.is_visible(MainPageLocators.SUM_FIELD), val=amount)
 
-    def email_field(self, email: str):
+    def send_email_field(self, email: str):
         return self.is_visible(MainPageLocators.EMAIL_FIELD).send_keys(email)
 
-    def name_field(self, name: str):
+    def send_name_field(self, name: str):
         return self.is_visible(MainPageLocators.NAME_FIELD).send_keys(name)
 
-    def phone_field(self, phone:str):
+    def send_phone_field(self, phone:str):
         return self.is_visible(MainPageLocators.PHONE_FIELD).send_keys(phone)
 
     def click_donate_button(self):

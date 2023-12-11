@@ -16,6 +16,9 @@ class PaymentPageLocators:
     IFRAME = (By.CSS_SELECTOR, ".with-appled")
 
     SUPPORT_BUTTON = (By.CSS_SELECTOR, ".header__button.btn.btn--transparent.js-scroll")
+
+    RECURRING_PAYMENT = (By.XPATH, "//a[@data-periodicity='monthly']")
+    SUM_500 = (By.XPATH, "//div[@data-value='500']")
     SUM_FIELD = (By.CSS_SELECTOR, ".donate_amount_flex")
     EMAIL_FIELD = (By.XPATH, "//input[@name='leyka_donor_email']")
     NAME_FIELD = (By.XPATH, "//input[@name='leyka_donor_name']")
