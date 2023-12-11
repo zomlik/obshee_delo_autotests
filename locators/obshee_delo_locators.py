@@ -24,11 +24,7 @@ class PaymentPageLocators:
     NAME_FIELD = (By.XPATH, "//input[@name='leyka_donor_name']")
     PHONE_FIELD = (By.XPATH, "//input[@name='leyka_mobilnyy-telefon']")
 
-    CURRENCY_BYN = (By.XPATH, "//a[@data-currency='byn']")
-
-    ANONYMOUS = (By.CSS_SELECTOR, "#anon")
-
     DONATE_BUTTON = (By.CSS_SELECTOR, ".leyka-default-submit")
 
-    PAY_BUTTON = (By.CSS_SELECTOR, ".button.button_primary")
+    PAY_BUTTON_FORM = (By.CSS_SELECTOR, ".button.button_primary")
 
