@@ -20,7 +20,7 @@ class TestMainPage:
         page = MainPage(browser)
         page.open(URL)
         page.is_clicable(buttons).click()
-        assert page.is_visible(MainPageLocators.PAY_BUTTON)
+        assert page.is_visible(MainPageLocators.PAY_BUTTON), "Кнопка не работает"
 
     def test_payment_form_placeholder(self, browser):
         page = MainPage(browser)

@@ -1,7 +1,6 @@
 from pages.obshee_delo.main_page import MainPage
 from locators.obshee_delo_locators import MainPageLocators
 from data.fake_data import FakeData
-import nic_api
 
 URL = "https://общее-дело.рф/#wysija"
 
