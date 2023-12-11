@@ -28,7 +28,7 @@ class MainPage(BasePage):
     def click_donate_button(self):
         return self.is_clicable(MainPageLocators.DONATE_BUTTON).click()
 
-    def click_pay_button(self):
+    def check_pay_button(self):
         return self.is_visible(MainPageLocators.PAY_BUTTON)
 
     def swith_pay_form_iframe(self):

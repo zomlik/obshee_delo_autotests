@@ -1,9 +1,7 @@
 import pytest
 
 from pages.poznavalov.main_page import MainPage
-from locators.poznovalov_locators import MainPageLocators
 from data.fake_data import FakeData
-import time
 
 URL = "https://poznavalov.ru/"
 
@@ -19,7 +17,7 @@ class TestPayment(FakeData):
         page.send_phone_field(self.phone())
         page.click_donate_button()
         page.swith_pay_form_iframe()
-        assert page.click_pay_button()
+        assert page.check_pay_button()
 
     def test_one_time_support(self, browser):
         page = MainPage(browser)
@@ -32,5 +30,5 @@ class TestPayment(FakeData):
         page.send_phone_field(self.phone())
         page.click_donate_button()
         page.swith_pay_form_iframe()
-        assert page.click_pay_button()
+        assert page.check_pay_button()
 
