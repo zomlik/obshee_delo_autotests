@@ -37,4 +37,4 @@ class PaymentPage(BasePage):
         return self.swith_iframe(PaymentPageLocators.IFRAME)
 
     def check_pay_button(self):
-        return self.is_visible(PaymentPageLocators.PAY_BUTTON)
+        return self.is_visible(PaymentPageLocators.PAY_BUTTON_FORM)
