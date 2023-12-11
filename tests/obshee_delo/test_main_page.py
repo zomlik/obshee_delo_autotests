@@ -1,7 +1,7 @@
 from pages.obshee_delo.main_page import MainPage
 from locators.obshee_delo_locators import MainPageLocators
 from data.fake_data import FakeData
-import time
+import nic_api
 
 URL = "https://общее-дело.рф/#wysija"
 
@@ -33,5 +33,7 @@ class TestMainPage(FakeData):
         page = MainPage(browser)
         page.open(URL)
         page.click_support_button()
-        assert page.current_url() == "https://xn----9sbkcac6brh7h.xn--p1ai/"
+        page.swith_windows()
+        assert page.current_url() == "https://xn--d1aadek5agm.xn----9sbkcac6brh7h.xn--p1ai/"
+
 
