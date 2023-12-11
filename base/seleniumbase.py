@@ -28,6 +28,9 @@ class BasePage:
         el.clear()
         el.send_keys(val)
 
+    def is_located(self, locator: tuple, timeout: int = TIMEOUT):
+        return wait(self.browser, timeout=timeout).until(EC.presence_of_element_located(locator))
+
     def is_visible(self, locator: tuple, timeout: int = TIMEOUT) -> WebElement:
         return wait(self.browser, timeout).until(EC.visibility_of_element_located(locator))
 

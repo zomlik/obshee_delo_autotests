@@ -10,7 +10,6 @@ URL = "https://donation.obshee-delo.ru"
 class TestMainPage:
     @pytest.mark.parametrize("locator_button, expected_link", DataMenu.data)
     def test_menu_buttons(self, browser, locator_button, expected_link):
-        """Тест проверяет работу кнопок главного меню"""
         page = MainPage(browser)
         page.open(URL)
         page.is_clicable(locator_button).click()
@@ -18,14 +17,12 @@ class TestMainPage:
 
     @pytest.mark.parametrize("buttons", MainPageLocators.list_button_support)
     def test_support_buttons(self, browser, buttons):
-        """Тест проверяет что все кнопки ПОДДЕРЖАТЬ работают"""
         page = MainPage(browser)
         page.open(URL)
         page.is_clicable(buttons).click()
         assert page.is_visible(MainPageLocators.PAY_BUTTON)
 
     def test_payment_form_placeholder(self, browser):
-        """Тест проверяет placeholder у формы оплаты"""
         page = MainPage(browser)
         page.open(URL)
         page.menu_support_button_click()
@@ -37,7 +34,6 @@ class TestMainPage:
 
 class TestPayment(FakeData):
     def test_min_support_amount(self, browser):
-        """Тест проверяет что минемальная сумма перевода не может быть меньше 10 рублей"""
         page = MainPage(browser)
         page.open(URL)
         page.menu_support_button_click()
@@ -46,7 +42,6 @@ class TestPayment(FakeData):
         assert page.get_text(locator=MainPageLocators.SUM_ERROR) == "Сумма должна быть больше 10 Руб."
 
     def test_sum_field_empty(self, browser):
-        """Тест проверяет, что невозможно выполнить платеж с пустым полем сумма"""
         page = MainPage(browser)
         page.open(URL)
         page.menu_support_button_click()
@@ -57,7 +52,6 @@ class TestPayment(FakeData):
         assert page.get_text(MainPageLocators.SUM_ERROR) == "Введите корректную сумму"
 
     def test_send_support_default(self, browser):
-        """Тест проверяет возможность выполнить перевод по банковской карте"""
         page = MainPage(browser)
         page.open(URL)
         page.menu_support_button_click()
