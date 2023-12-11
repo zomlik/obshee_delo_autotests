@@ -2,13 +2,13 @@ import pytest
 
 from pages.poznavalov.main_page import MainPage
 from locators.poznovalov_locators import MainPageLocators
-from data.fake_date import FakeDate
+from data.fake_data import FakeData
 import time
 
 URL = "https://poznavalov.ru/"
 
 
-class TestPayment(FakeDate):
+class TestPayment(FakeData):
     def test_payment_default(self, browser):
         page = MainPage(browser)
         page.open(URL)

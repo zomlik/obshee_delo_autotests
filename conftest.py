@@ -6,7 +6,8 @@ from selenium.webdriver.chrome.options import Options
 @pytest.fixture(scope="function")
 def options():
     options = Options()
-    #options.add_argument("--headless")
+    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--headless")
     return options
 
 
@@ -14,6 +15,5 @@ def options():
 def browser(options):
     browser = webdriver.Chrome(options=options)
     browser.implicitly_wait(10)
-    browser.maximize_window()
     yield browser
     browser.quit()
