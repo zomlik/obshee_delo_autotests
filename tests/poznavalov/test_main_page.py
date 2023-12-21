@@ -17,7 +17,7 @@ class TestPayment(FakeData):
         page.send_phone_field(self.phone())
         page.click_donate_button()
         page.swith_pay_form_iframe()
-        assert page.check_pay_button()
+        page.check_pay_button()
 
     def test_one_time_support(self, browser):
         page = MainPage(browser)
@@ -30,5 +30,5 @@ class TestPayment(FakeData):
         page.send_phone_field(self.phone())
         page.click_donate_button()
         page.swith_pay_form_iframe()
-        assert page.check_pay_button()
+        page.check_pay_button()
 

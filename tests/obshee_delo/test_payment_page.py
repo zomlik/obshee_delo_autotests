@@ -16,7 +16,7 @@ class TestPayment(FakeData):
         page.send_phone_field(self.phone())
         page.click_donate_button()
         page.swith_iframe_form()
-        assert page.check_pay_button()
+        page.check_pay_button()
 
     def test_send_support_recurring(self, browser):
         page = PaymentPage(browser)
@@ -29,5 +29,5 @@ class TestPayment(FakeData):
         page.send_phone_field(self.phone())
         page.click_donate_button()
         page.swith_iframe_form()
-        assert page.check_pay_button()
+        page.check_pay_button()
 

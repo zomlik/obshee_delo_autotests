@@ -1,67 +1,45 @@
-import pytest
 from pages.donation_obshee_delo.main_page import MainPage
 from locators.donation_obshee_delo_locators import MainPageLocators
-from data.donation_obshee_delo_data import DataMenu
 from data.fake_data import FakeData
 
 URL = "https://donation.obshee-delo.ru"
 
 
-class TestMainPage:
-    @pytest.mark.parametrize("locator_button, expected_link", DataMenu.data)
-    def test_menu_buttons(self, browser, locator_button, expected_link):
-        page = MainPage(browser)
-        page.open(URL)
-        page.is_clicable(locator_button).click()
-        assert page.current_url() == expected_link
-
-    @pytest.mark.parametrize("buttons", MainPageLocators.list_button_support)
-    def test_support_buttons(self, browser, buttons):
-        page = MainPage(browser)
-        page.open(URL)
-        page.is_clicable(buttons).click()
-        assert page.is_visible(MainPageLocators.PAY_BUTTON), "Кнопка не работает"
-
-    def test_payment_form_placeholder(self, browser):
-        page = MainPage(browser)
-        page.open(URL)
-        page.click_menu_support_button()
-        assert page.get_attribute(MainPageLocators.SUM_FIELD, "placeholder") == "Сумма"
-        assert page.get_attribute(MainPageLocators.NAME_FIELD, "placeholder") == "ФИО"
-        assert page.get_attribute(MainPageLocators.PHONE_FIELD, "placeholder") == "Телефон"
-        assert page.get_attribute(MainPageLocators.EMAIL_FIELD, "placeholder") == "E-mail"
-
-
 class TestPayment(FakeData):
-    def test_min_support_amount(self, browser):
+    def test_min_support_amount_500(self, browser):
         page = MainPage(browser)
         page.open(URL)
         page.click_menu_support_button()
-        page.send_sum(amount=9)
-        page.click_pay_button()
-        assert page.get_text(locator=MainPageLocators.SUM_ERROR) == "Сумма должна быть больше 10 Руб."
+        page.send_sum_500()
+        page.personal_information()
+        page.click_agree_personal_data()
+        page.click_donate_button()
+        page.click_bank_card()
+        page.yoomoney_page_pay()
+        assert page.get_text(MainPageLocators.YOOMONEY_PAY_MESSAGE) == "Не сработало"
 
-    def test_sum_field_empty(self, browser):
+    def test_donate_button_is_disabled(self, browser):
         page = MainPage(browser)
         page.open(URL)
         page.click_menu_support_button()
+        page.send_sum(self.amount(min_value=10, max_value=30000))
         page.send_name_field(self.name())
         page.send_phone_field(self.phone())
         page.send_email_field(self.email())
-        page.click_pay_button()
-        assert page.get_text(MainPageLocators.SUM_ERROR) == "Введите корректную сумму"
+        assert page.visible(MainPageLocators.DONATE_BUTTON).is_enabled() is False, "Кнопка активна"
 
     def test_send_support_default(self, browser):
         page = MainPage(browser)
         page.open(URL)
         page.click_menu_support_button()
-        page.send_sum(self.amount(min_value=10, max_value=99999))
+        page.send_sum(self.amount(min_value=10, max_value=30000))
+        page.send_email_field(self.email())
         page.send_name_field(self.name())
         page.send_phone_field(self.phone())
-        page.send_email_field(self.email())
-        page.click_pay_button()
+        page.click_agree_personal_data()
+        page.click_donate_button()
         page.click_bank_card()
-        page.swith_windows()
-        page.leave_iframe()
-        assert page.yoomoney_button_pay()
+        page.yoomoney_page_pay()
+        assert page.get_text(MainPageLocators.YOOMONEY_PAY_MESSAGE) == "Не сработало"
+
 

@@ -21,3 +21,16 @@ class FakeData:
     def email(self):
         return Faker(self.LOCALIZATION).email
 
+    @property
+    def credit_card(self):
+        return Faker(self.LOCALIZATION).credit_card_number
+
+    @property
+    def credit_card_expire(self):
+        return Faker(self.LOCALIZATION).credit_card_expire
+
+    @property
+    def credit_card_code(self):
+        return Faker(self.LOCALIZATION).credit_card_security_code
+
+
