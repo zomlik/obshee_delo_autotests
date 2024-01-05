@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 
 
 class MainPageLocators:
+    """Главная страница Общее Дело"""
     MAIN_LINK_MENU = (By.CSS_SELECTOR, ".menu-item-4588")
     BANNER_BLOCK = (By.CSS_SELECTOR, ".bannerControls")
     SUBSCRIPTION_FIELD = (By.XPATH, "//input[@name='wysija[user][email]']")
@@ -17,6 +18,7 @@ class PaymentPageLocators:
 
     SUPPORT_BUTTON = (By.CSS_SELECTOR, ".header__button.btn.btn--transparent.js-scroll")
 
+    """Форма оплаты Поддержи Общее Дело"""
     RECURRING_PAYMENT = (By.XPATH, "//a[@data-periodicity='monthly']")
     SUM_500 = (By.XPATH, "//div[@data-value='500']")
     SUM_FIELD = (By.CSS_SELECTOR, ".donate_amount_flex")
@@ -25,6 +27,3 @@ class PaymentPageLocators:
     PHONE_FIELD = (By.XPATH, "//input[@name='leyka_mobilnyy-telefon']")
 
     DONATE_BUTTON = (By.CSS_SELECTOR, ".leyka-default-submit")
-
-    PAY_BUTTON_FORM = (By.CSS_SELECTOR, ".button.button_primary")
-

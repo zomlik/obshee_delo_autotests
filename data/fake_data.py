@@ -3,7 +3,7 @@ from faker import Faker
 
 
 class FakeData:
-    LOCALIZATION = "ru_RU"
+    fake = Faker("ru_RU")
 
     @staticmethod
     def amount(min_value: int, max_value: int):
@@ -11,26 +11,24 @@ class FakeData:
 
     @property
     def name(self):
-        return Faker(self.LOCALIZATION).name
+        return self.fake.name
 
     @property
     def phone(self):
-        return Faker(self.LOCALIZATION).phone_number
+        return self.fake.phone_number
 
     @property
     def email(self):
-        return Faker(self.LOCALIZATION).email
-
-    @property
-    def credit_card(self):
-        return Faker(self.LOCALIZATION).credit_card_number
+        return self.fake.email
 
     @property
     def credit_card_expire(self):
-        return Faker(self.LOCALIZATION).credit_card_expire
+        return self.fake.credit_card_expire
 
-    @property
-    def credit_card_code(self):
-        return Faker(self.LOCALIZATION).credit_card_security_code
+    @staticmethod
+    def credit_card_number():
+        return "5106502628283431"
 
-
+    @staticmethod
+    def credit_card_cvv():
+        return "456"
